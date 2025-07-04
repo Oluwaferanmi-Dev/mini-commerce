@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Headphones",
+    "price": 40000.99,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Electronics",
+    "description": "Experience high-quality sound with these comfortable wireless headphones. Designed for long listening sessions and crystal-clear audio."
+  },
+  {
+    "id": 2,
+    "name": "Mechanical Keyboard",
+    "price": 129000.99,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Peripherals",
+    "description": "Enhance your typing experience with this mechanical keyboard featuring tactile feedback, RGB backlighting, and durable key switches."
+  },
+  {
+    "id": 3,
+    "name": "4K Ultra HD Monitor",
+    "price": 400000.99,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Displays",
+    "description": "A 27-inch 4K UHD monitor with vivid color accuracy and ultra-sharp resolution. Ideal for creatives and gamers alike."
+  },
+  {
+    "id": 4,
+    "name": "Ergonomic Wireless Mouse",
+    "price": 2490.99,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Accessories",
+    "description": "This ergonomic wireless mouse ensures comfort and precision with programmable buttons and long battery life."
+  },
+  {
+    "id": 5,
+    "name": "Bluetooth Speaker",
+    "price": 89000.99,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Audio",
+    "description": "Portable and powerful, this Bluetooth speaker delivers rich bass and crisp highs with up to 12 hours of playtime."
+  },
+  {
+    "id": 6,
+    "name": "Smart Fitness Watch",
+    "price": 59000.99,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Wearables",
+    "description": "Track your activity, heart rate, and sleep with this sleek smart fitness watch. Pairs seamlessly with your smartphone."
+  },
+  {
+    "id": 7,
+    "name": "Portable SSD Drive",
+    "price": 190000.99,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Storage",
+    "description": "Fast, compact, and reliable. This portable SSD offers high-speed data transfer and shock-resistant design."
+  },
+  {
+    "id": 8,
+    "name": "1080p HD Webcam",
+    "price": 45000.00,
+    "image": "https://placehold.co/400x400.png",
+    "category": "Video Gear",
+    "description": "Upgrade your video calls and streams with this 1080p HD webcam. Features autofocus and built-in noise-reducing microphone."
+  }
+]
