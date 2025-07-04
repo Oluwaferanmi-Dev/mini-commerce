@@ -1,103 +1,86 @@
-import Image from "next/image";
+'use client';
+
+import { ProductCard } from '@/components/ProductCard';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Terminal } from 'lucide-react';
+import type { Product } from '@/types';
+import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
+
+async function getProducts(): Promise<Product[]> {
+    const res = await fetch('/api/products');
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
+    }
+    return res.json();
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    const { data: products, isLoading, isError } = useQuery({
+        queryKey: ['products'],
+        queryFn: getProducts,
+    });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    const renderSkeletons = () => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="flex flex-col space-y-3">
+                    <Skeleton className="aspect-square w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-4 w-4/5" />
+                        <Skeleton className="h-4 w-3/5" />
+                    </div>
+                </div>
+            ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
+
+    return (
+        <>
+            <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+                        Welcome to Mini-Commerce
+                    </h1>
+                    <p className="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-blue-100">
+                        Discover amazing products at unbeatable prices. Quality guaranteed, fast shipping, and excellent customer service.
+                    </p>
+                    <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                        <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
+                            <Link href="#">Shop Now</Link>
+                        </Button>
+                        <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                            <Link href="#">Learn More</Link>
+                        </Button>
+                    </div>
+                </div>
+            </section>
+            
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl font-bold tracking-tight">Featured Products</h2>
+                    <p className="mt-2 text-muted-foreground">Discover our carefully curated selection of high-quality products at amazing prices.</p>
+                </div>
+                {isLoading ? renderSkeletons() : null}
+                {isError ? (
+                    <Alert variant="destructive" className="max-w-2xl mx-auto">
+                        <Terminal className="h-4 w-4" />
+                        <AlertTitle>Error Fetching Products</AlertTitle>
+                        <AlertDescription>
+                            There was a problem loading products. Please try refreshing the page.
+                        </AlertDescription>
+                    </Alert>
+                ) : null}
+                {!isLoading && !isError && products && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                        {products.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </>
+    );
 }
