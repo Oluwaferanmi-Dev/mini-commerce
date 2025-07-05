@@ -47,22 +47,28 @@ export default function CartPage() {
         <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
         <div className="space-y-4">
           {cart.map(({ product, quantity }) => (
-            <Card key={product.id} className="flex items-center p-4">
-              <div className="relative h-24 w-24 rounded-md overflow-hidden">
-                <Image src={product.image} alt={product.name} fill className="object-cover" />
+            <Card key={product.id} className="p-4 overflow-hidden">
+              <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <div className="flex items-center gap-4 flex-1 w-full">
+                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 flex-shrink-0 rounded-md overflow-hidden">
+                    <Image src={product.image} alt={product.name} fill className="object-cover" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold leading-tight">{product.name}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">₦{product.price.toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className="flex w-full sm:w-auto items-center justify-between sm:justify-end sm:gap-4">
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="icon" onClick={() => decreaseQuantity(product.id)}><Minus className="h-4 w-4" /></Button>
+                    <Input readOnly value={quantity} className="w-12 text-center" />
+                    <Button variant="outline" size="icon" onClick={() => increaseQuantity(product.id)}><Plus className="h-4 w-4" /></Button>
+                  </div>
+                  <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive" onClick={() => removeItem(product.id)}>
+                    <Trash2 className="h-5 w-5" />
+                  </Button>
+                </div>
               </div>
-              <div className="ml-4 flex-1">
-                <h3 className="font-semibold">{product.name}</h3>
-                <p className="text-sm text-muted-foreground">₦{product.price.toLocaleString()}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button variant="outline" size="icon" onClick={() => decreaseQuantity(product.id)}><Minus className="h-4 w-4" /></Button>
-                <Input readOnly value={quantity} className="w-12 text-center" />
-                <Button variant="outline" size="icon" onClick={() => increaseQuantity(product.id)}><Plus className="h-4 w-4" /></Button>
-              </div>
-              <Button variant="ghost" size="icon" className="ml-4 text-destructive hover:text-destructive" onClick={() => removeItem(product.id)}>
-                <Trash2 className="h-5 w-5" />
-              </Button>
             </Card>
           ))}
         </div>
