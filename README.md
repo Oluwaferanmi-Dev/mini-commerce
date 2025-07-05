@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Mini Commerce
 
-## Getting Started
+**Mini Commerce** is a lightweight e-commerce application built with **Next.js**. It provides a foundational structure for displaying products, managing a shopping cart, and handling a basic checkout flow. The project is built with a modern stack and follows current web development best practices — clean architecture, responsive design, performance focus, and SEO readiness.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎨 Design Approach
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The design follows a clean, minimalist direction, prioritizing usability and readability.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Layout:** Simple and consistent — a global header and footer, grid-based product listing, and dedicated product detail pages.
+- **Color Scheme:** A calm color palette that highlights important UI elements like buttons and links without overwhelming the user. Dark mode is also supported for better accessibility and user preference.
+- **Responsiveness:** Built mobile-first with **Tailwind CSS**, ensuring seamless usability across devices — from phones to desktops.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧰 Tools & Tech
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend Framework:** [Next.js](https://nextjs.org/)
+- **TypeScript:** For static typing and better code maintainability
+- **Styling:** 
+  - [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
+  - [shadcn/ui](https://ui.shadcn.com/) for accessible, pre-built UI components
+- **State Management:** [Zustand](https://zustand-demo.pmnd.rs/) for global cart state, with middleware and selectors
+- **Data Fetching:** 
+  - Local static JSON file (`public/products.json`) for demo data
+  - Set up to scale with tools like **React Query** for more complex data operations
+- **Architecture:** 
+  - Functional React components with hooks
+  - Component-based structure for scalability
+- **Theme Support:** Uses `next-themes` for light/dark mode toggling
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔍 SEO Strategy
 
-## Deploy on Vercel
+SEO has been considered from the ground up:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Meta Tags / Open Graph:** (Ready to be implemented) Supports dynamic page metadata for better visibility and social sharing
+- **Structured Data:** (Optional enhancement) Can integrate JSON-LD for richer search results
+- **Image Optimization:** Uses Next.js `Image` component for lazy loading, resizing, and compression
+- **Semantic HTML:** Ensures meaningful markup that search engines can parse effectively
+- **Performance Tweaks:** Includes fast loading via image optimization, layout shifting reduction, and selective rendering
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ⚠️ Error Handling Strategy
+
+- **Product Data Fetching:** If loading `products.json` fails, the app handles it gracefully with user-friendly feedback instead of crashing
+- **Cart Operations:** Prevents adding invalid items and handles edge cases (like out-of-stock or duplicate entries in future extensions)
+- **Unknown Routes:** Default Next.js 404 handling, customizable for better UX
+- **UI Feedback:** Uses `use-toast` from `shadcn/ui` to notify users of errors or actions
+- **Logging:** (Can be extended) Errors can be logged to console or external services
+- **Recovery Options:** Where possible, users are given clear paths to retry or navigate elsewhere
+
+---
+
+
